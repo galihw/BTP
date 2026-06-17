@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waspada Bahan Tambahan Pangan</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="../dataimage/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../dataimage/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../dataimage/favicon_io/favicon-16x16.png">
+	<style>
+		.bg {
+			max-width: 840px; /* Lebar maksimal halaman */
+			margin: 0 auto;
+			width: 100%;
+			height: 472px;
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		}
+		.bgmeja {
+			margin: 0 auto;
+			width: 840px;
+			height: 472px;
+		}
+		.klikbtn {
+			position: absolute;
+			width: 100px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.divimg {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			background-color: none;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			justify-content: center;
+		}
+		.meja {
+			position: absolute;
+			width: 820px;
+			height: 280px;
+			background-color: none;
+			cursor: default;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btn {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btngrey {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: default;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btnMenu {
+			position: absolute;
+			width: 130px; 
+			height: 150px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class ="bg" id="bg">
+		<div class="btngrey" id="btngBeranda"></div>
+		<div class="btngrey" id="btngMateri"></div>
+		<div class="btngrey" id="btngKembali"></div>
+		<div class="btngrey" id="btngLanjut"></div>
+		<div class="btn" id="btnBeranda"></div>
+		<div class="btn" id="btnMateri"></div>
+		<div class="btn" id="btnKembali"></div>
+		<div class="btn" id="btnLanjut"></div>
+	</div>
+	<script>
+		// posisi awal dan image awal
+		const cX = window.scrollX;
+		const cY = window.scrollY;
+		const myBG = document.getElementById("bg");
+		myBG.style.backgroundImage = "url(../dataimage/materi62.png)";
+		myBG.x = myBG.getBoundingClientRect().x;
+		myBG.y = myBG.getBoundingClientRect().y;
+		myBG.w = myBG.getBoundingClientRect().width;
+		myBG.h = myBG.getBoundingClientRect().height;
+		document.body.style.backgroundColor = "black";
+	
+		const btnBeranda = document.getElementById("btnBeranda");
+		const btnMateri = document.getElementById("btnMateri");
+		const btnKembali = document.getElementById("btnKembali");
+		const btnLanjut = document.getElementById("btnLanjut");
+		const btngBeranda = document.getElementById("btngBeranda");
+		const btngMateri = document.getElementById("btngMateri");
+		const btngKembali = document.getElementById("btngKembali");
+		const btngLanjut = document.getElementById("btngLanjut");
+		
+		var scl = 1;
+		var xyBtn = [[32,422],[145,422],[610,422],[730,422]];
+		btnBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
+		btnBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+		btnBeranda.style.backgroundImage = "url(../dataimage/btnBeranda.png)";
+		btnMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
+		btnMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+		btnMateri.style.backgroundImage = "url(../dataimage/btnMateri.png)";
+		btnKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
+		btnKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+		btnKembali.style.backgroundImage = "url(../dataimage/btnKembali.png)";
+		btnLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
+		btnLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+		btnLanjut.style.backgroundImage = "url(../dataimage/btnLanjut.png)";
+		btngBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
+		btngBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+		btngBeranda.style.backgroundImage = "url(../dataimage/btngBeranda.png)";
+		btngMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
+		btngMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+		btngMateri.style.backgroundImage = "url(../dataimage/btngMateri.png)";
+		btngKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
+		btngKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+		btngKembali.style.backgroundImage = "url(../dataimage/btngKembali.png)";
+		btngLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
+		btngLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
+		
+	</script>
+	<script>
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			fixscale = Math.min(xscale,yscale);
+			fixzoom = fixscale*100;
+			document.body.style.zoom = ""+fixzoom+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+		}
+		
+		//ZoomAll();
+		//window.resizeTo(840, 472);
+	</script>
+	<script>
+		//function acak array
+		function RandomMyArray(Arr){
+			for (var i=0; i<Arr.length; i++){
+				var r = Math.floor(Math.random() * Arr.length);
+				var a = Arr[i];
+				Arr[i] = Arr[r];
+				Arr[r] = a;
+			}
+			return Arr;
+		}
+		function arraysAreEqual(arr1, arr2) {
+			if (arr1.length !== arr2.length) {
+			   return false;
+			}
+			return arr1.every((val, index) => val === arr2[index]);
+		}
+	</script>
+	<script>
+		btnBeranda.addEventListener("click", function(){	location.href = "02beranda.html";})
+		btnMateri.addEventListener("click", function(){	location.href = "31materi.html";})
+		btnKembali.addEventListener("click", function(){	location.href = "38Alainnya.html";})
+		btnLanjut.addEventListener("click", function(){	location.href = "38Clainnya.html";})
+		
+		btnBeranda.style.display = "none";
+		btnMateri.style.display = "";//none
+		btnKembali.style.display = "";//none
+		btnLanjut.style.display = "";//none
+	</script>
+	<script>
+		window.addEventListener('resize', () => {
+			UbahWindow(0,0)
+		});
+		/*
+		window.addEventListener('scroll', () => {
+			const cX = window.scrollX || window.pageXOffset;
+			const cY = window.scrollY || window.pageYOffset;
+			UbahWindow(cX,cY)
+		});
+		*/
+		function UbahWindow(xc,yc){
+			for(var i=1;i<=4;i++){
+				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
+				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
+			}
+		}
+	</script>
+	
+	
+	<script>
+	</script>
+</body>
+</html>

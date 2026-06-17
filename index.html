@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waspada Bahan Tambahan Pangan</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="dataimage/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="dataimage/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="dataimage/favicon_io/favicon-16x16.png">
+	<style>
+		.bg {
+			max-width: 840px; /* Lebar maksimal halaman */
+			margin: 0 auto;
+			width: 100%;
+			height: 472px;
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		}
+		.bgmeja {
+			margin: 0 auto;
+			width: 840px;
+			height: 472px;
+		}
+		.klikbtn {
+			position: absolute;
+			width: 100px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.divimg {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			background-color: none;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			justify-content: center;
+		}
+		.meja {
+			position: absolute;
+			width: 820px;
+			height: 280px;
+			background-color: none;
+			cursor: default;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btn {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class ="bg" id="bg">
+		<div class="btn" id="btnMulai"></div>
+	</div>
+	<script>
+		// posisi awal dan image awal
+		const cX = window.scrollX;
+		const cY = window.scrollY;
+		const myBG = document.getElementById("bg");
+		document.body.style.backgroundColor = "black";
+	</script>
+	<script>
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			fixscale = Math.min(xscale,yscale);
+			fixzoom = fixscale*100;
+			document.body.style.zoom = ""+fixzoom+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+		}
+		
+		//ZoomAll();
+		//window.resizeTo(840, 472);
+	</script>
+	<script>
+		//function acak array
+		function RandomMyArray(Arr){
+			for (var i=0; i<Arr.length; i++){
+				var r = Math.floor(Math.random() * Arr.length);
+				var a = Arr[i];
+				Arr[i] = Arr[r];
+				Arr[r] = a;
+			}
+			return Arr;
+		}
+		function arraysAreEqual(arr1, arr2) {
+			if (arr1.length !== arr2.length) {
+			   return false;
+			}
+			return arr1.every((val, index) => val === arr2[index]);
+		}
+	</script>
+	<script>
+		location.href = "datahtml/01judul.html";
+	</script>
+	<script>
+		window.addEventListener('resize', () => {
+			UbahWindow(0,0)
+		});
+		/*
+		window.addEventListener('scroll', () => {
+			const cX = window.scrollX || window.pageXOffset;
+			const cY = window.scrollY || window.pageYOffset;
+			UbahWindow(cX,cY)
+		});
+		*/
+		function UbahWindow(xc,yc){
+			for(var i=1;i<=4;i++){
+				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
+				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
+			}
+		}
+	</script>
+	
+	
+	<script>
+	</script>
+</body>
+</html>

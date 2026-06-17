@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waspada Bahan Tambahan Pangan</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="../dataimage/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../dataimage/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../dataimage/favicon_io/favicon-16x16.png">
+	<style>
+		.bg {
+			max-width: 840px; /* Lebar maksimal halaman */
+			margin: 0 auto;
+			width: 100%;
+			height: 472px;
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		}
+		.bgmeja {
+			margin: 0 auto;
+			width: 840px;
+			height: 472px;
+		}
+		.klikbtn {
+			position: absolute;
+			width: 100px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.divimg {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			background-color: none;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			justify-content: center;
+		}
+		.meja {
+			position: absolute;
+			width: 820px;
+			height: 280px;
+			background-color: none;
+			cursor: default;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btn {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btngrey {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: default;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div class ="bg" id="bg">
+		<div class ="bgmeja" id="bgmeja"></div>
+		<div class ="meja" id="meja"></div>
+		<div class="btngrey" id="btngBeranda"></div>
+		<div class="btngrey" id="btngMateri"></div>
+		<div class="btngrey" id="btngKembali"></div>
+		<div class="btngrey" id="btngLanjut"></div>
+		<div class="btn" id="btnBeranda"></div>
+		<div class="btn" id="btnMateri"></div>
+		<div class="btn" id="btnKembali"></div>
+		<div class="btn" id="btnLanjut"></div>
+	</div>
+	<script>
+		//data png dan ukuran
+		var alami = 	[
+						["batang-serai.png",200,200,1],
+						["bawang-putih.png",200,200,1],
+						["Buah-bit.png",200,200,1],
+						["buah-naga.png",200,200,1],
+						["cabai.png",200,200,1],
+						["daun-jeruk.png",200,200,1],
+						["daun-pandan.png",200,200,1],
+						["daun-Stevia.png",200,200,1],
+						["Daun-suji.png",200,200,1],
+						["Garam-dapur.png",200,200,1],
+						["Gula-aren.png",200,200,1],
+						["gula-pasir.png",200,200,1],
+						//["kacang-kedelai.png",200,200,1],
+						["kacang-vanila.png",200,200,1],
+						["kulit-buah-apel.png",200,200,1],
+						["kulit-buah-jeruk.png",200,200,1],
+						["kuning-telur.png",200,200,1],
+						["Kunyit.png",200,200,1],
+						["madu.png",200,200,1],
+						//["rumput-laut.png",200,161,1],
+						["ubi-ungu.png",200,200,1],
+						["wortel.png",200,200,1]
+						]
+						
+		var buatan = 	[
+						["asam-asetat.png",200,200,2],
+						["asam-benzoat.png",200,200,2],
+						["Asam-sitrat.png",200,200,2],
+						["aspartam.png",200,200,2],
+						["baking-powder.png",200,200,2],
+						["eritrosin.png",200,200,2],
+						["kalsium-sorbat.png",200,200,2],
+						["klorofil.png",200,200,2],
+						["Lesitin.png",200,200,2],
+						["msg.png",200,200,2],
+						["natrium-benzoat.png",200,200,2],
+						["sakarin.png",200,200,2],
+						["soda-kue.png",200,200,2],
+						["sukralosa.png",200,200,2],
+						["Tartrazin.png",200,200,2]
+						]
+						
+		var bukanbtp = 	[
+						["buncis.png",200,117,3],
+						["cocacola.png",56,200,3],
+						["daging-ayam.png",200,165,3],
+						["daging-ikan-salmon.png",200,168,3],
+						["daging-sapi.png",200,190,3],
+						["donat.png",200,96,3],
+						["durian.png",200,157,3],
+						["es-campur.png",104,200,3],
+						["es-cendol.png",110,200,3],
+						["es-krim.png",200,88,3],
+						["es-teler.png",139,200,3],
+						["jagung.png",200,54,3],
+						["jus-buah.png",142,200,3],
+						["kacang-panjang.png",200,94,3],
+						["labu-siam.png",140,200,3],
+						["makaroni-skotel.png",200,133,3],
+						["mangga.png",200,158,3],
+						["pisang.png",200,129,3],
+						["pizza.png",200,134,3],
+						["rambutan.png",200,160,3],
+						["roti-manis.png",200,122,3],
+						["roti-sisir.png",200,114,3],
+						["roti-tawar.png",200,140,3],
+						["sayur-sop.png",200,127,3],
+						["semangka.png",194,200,3],
+						["sirup.png",59,200,3],
+						["susu.png",197,200,3],
+						["teh.png",200,146,3],
+						["zupazup.png",200,185,3],
+						["kopi.png",200,184,3]
+						]
+						
+		/*
+		var alami = 	[
+						["batang-serai.png",200,100,1],
+						["bawang-putih.png",200,126,1],
+						["Buah-bit.png",200,147,1],
+						["buah-naga.png",200,112,1],
+						["cabai.png",200,136,1],
+						["daun-jeruk.png",200,133,1],
+						["daun-pandan.png",200,115,1],
+						["daun-Stevia.png",200,163,1],
+						["Daun-suji.png",200,103,1],
+						["Garam-dapur.png",114,200,1],
+						["Gula-aren.png",200,174,1],
+						["gula-pasir.png",140,200,1],
+						//["kacang-kedelai.png",200,121,1],
+						["kacang-vanila.png",190,200,1],
+						["kulit-buah-apel.png",200,134,1],
+						["kulit-buah-jeruk.png",200,94,1],
+						["kuning-telur.png",200,146,1],
+						["Kunyit.png",200,150,1],
+						["madu.png",200,147,1],
+						//["rumput-laut.png",200,161,1],
+						["ubi-ungu.png",200,118,1],
+						["wortel.png",200,83,1]
+						]
+						
+		var buatan = 	[
+						["asam-asetat.png",53,200,2],
+						["asam-benzoat.png",143,200,2],
+						["Asam-sitrat.png",146,200,2],
+						["aspartam.png",160,200,2],
+						["baking-powder.png",146,200,2],
+						["eritrosin.png",127,200,2],
+						["kalsium-sorbat.png",102,200,2],
+						["klorofil.png",127,200,2],
+						["Lesitin.png",118,200,2],
+						["msg.png",149,200,2],
+						["natrium-benzoat.png",133,200,2],
+						["sakarin.png",99,200,2],
+						["soda-kue.png",194,200,2],
+						["sukralosa.png",127,200,2],
+						["Tartrazin.png",168,200,2]
+						]
+						
+		var bukanbtp = 	[
+						["buncis.png",200,117,3],
+						["cocacola.png",56,200,3],
+						["daging-ayam.png",200,165,3],
+						["daging-ikan-salmon.png",200,168,3],
+						["daging-sapi.png",200,190,3],
+						["donat.png",200,96,3],
+						["durian.png",200,157,3],
+						["es-campur.png",104,200,3],
+						["es-cendol.png",110,200,3],
+						["es-krim.png",200,88,3],
+						["es-teler.png",139,200,3],
+						["jagung.png",200,54,3],
+						["jus-buah.png",142,200,3],
+						["kacang-panjang.png",200,94,3],
+						["labu-siam.png",140,200,3],
+						["makaroni-skotel.png",200,133,3],
+						["mangga.png",200,158,3],
+						["pisang.png",200,129,3],
+						["pizza.png",200,134,3],
+						["rambutan.png",200,160,3],
+						["roti-manis.png",200,122,3],
+						["roti-sisir.png",200,114,3],
+						["roti-tawar.png",200,140,3],
+						["sayur-sop.png",200,127,3],
+						["semangka.png",194,200,3],
+						["sirup.png",59,200,3],
+						["susu.png",197,200,3],
+						["teh.png",200,146,3],
+						["zupazup.png",200,185,3],
+						["kopi.png",200,184,3]
+						]
+		*/				
+	</script>
+	<script>
+		// posisi awal dan image awal
+		const cX = window.scrollX;
+		const cY = window.scrollY;
+		const myBG = document.getElementById("bg");
+		const myBgMeja = document.getElementById("bgmeja");
+		const myMeja = document.getElementById("meja");
+		
+		const btnBeranda = document.getElementById("btnBeranda");
+		const btnMateri = document.getElementById("btnMateri");
+		const btnKembali = document.getElementById("btnKembali");
+		const btnLanjut = document.getElementById("btnLanjut");
+		const btngBeranda = document.getElementById("btngBeranda");
+		const btngMateri = document.getElementById("btngMateri");
+		const btngKembali = document.getElementById("btngKembali");
+		const btngLanjut = document.getElementById("btngLanjut");
+		
+		
+		myBG.style.backgroundImage = "url(../dataimage/bg.png)";
+		myBgMeja.style.backgroundImage = "url(../dataimage/bgmeja.png)";
+		myBG.x = myBG.getBoundingClientRect().x;
+		myBG.y = myBG.getBoundingClientRect().y;
+		myBG.w = myBG.getBoundingClientRect().width;
+		myBG.h = myBG.getBoundingClientRect().height;
+		
+		myMeja.style.left = (myBG.x+60)+'px';
+		myMeja.style.top = (myBG.y+142)+'px';
+		myMeja.x = myMeja.getBoundingClientRect().x;
+		myMeja.y = myMeja.getBoundingClientRect().y;
+		
+		btnBeranda.style.left = (myBG.x+31)+'px';
+		btnBeranda.style.top = (myBG.y+422)+'px';
+		btnBeranda.style.backgroundImage = "url(../dataimage/btnBeranda.png)";
+		btnMateri.style.left = (myBG.x+145)+'px';
+		btnMateri.style.top = (myBG.y+422)+'px';
+		btnMateri.style.backgroundImage = "url(../dataimage/btnMateri.png)";
+		btnKembali.style.left = (myBG.x+610)+'px';
+		btnKembali.style.top = (myBG.y+422)+'px';
+		btnKembali.style.backgroundImage = "url(../dataimage/btnKembali.png)";
+		btnLanjut.style.left = (myBG.x+730)+'px';
+		btnLanjut.style.top = (myBG.y+422)+'px';
+		btnLanjut.style.backgroundImage = "url(../dataimage/btnLanjut.png)";
+		btngBeranda.style.left = (myBG.x+31)+'px';
+		btngBeranda.style.top = (myBG.y+422)+'px';
+		btngBeranda.style.backgroundImage = "url(../dataimage/btngBeranda.png)";
+		btngMateri.style.left = (myBG.x+145)+'px';
+		btngMateri.style.top = (myBG.y+422)+'px';
+		btngMateri.style.backgroundImage = "url(../dataimage/btngMateri.png)";
+		btngKembali.style.left = (myBG.x+610)+'px';
+		btngKembali.style.top = (myBG.y+422)+'px';
+		btngKembali.style.backgroundImage = "url(../dataimage/btngKembali.png)";
+		btngLanjut.style.left = (myBG.x+730)+'px';
+		btngLanjut.style.top = (myBG.y+422)+'px';
+		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
+		
+		document.body.style.backgroundColor = "black";
+		
+		btnBeranda.addEventListener("click", function(){	location.href = "02beranda.html";})
+		btnMateri.addEventListener("click", function(){	location.href = "21materi.html";})
+		btnKembali.addEventListener("click", function(){	location.href = "21materi.html";})
+		btnLanjut.addEventListener("click", function(){	location.href = "21materi.html";})
+		
+		btnBeranda.style.display = "";//none
+		btnMateri.style.display = "none";
+		btnKembali.style.display = "none";
+		btnLanjut.style.display = "none";
+		
+		
+	</script>
+	<script>
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			fixscale = Math.min(xscale,yscale);
+			fixzoom = fixscale*100;
+			document.body.style.zoom = ""+fixzoom+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+		}
+		
+		//ZoomAll();
+		//window.resizeTo(840, 472);
+	</script>
+	<script>
+		//function acak array
+		function RandomMyArray(Arr){
+			for (var i=0; i<Arr.length; i++){
+				var r = Math.floor(Math.random() * Arr.length);
+				var a = Arr[i];
+				Arr[i] = Arr[r];
+				Arr[r] = a;
+			}
+			return Arr;
+		}
+		function arraysAreEqual(arr1, arr2) {
+			if (arr1.length !== arr2.length) {
+			   return false;
+			}
+			return arr1.every((val, index) => val === arr2[index]);
+		}
+	</script>
+	<script>
+		// merandom image
+		var arAll = [alami,buatan,bukanbtp];
+		for(var i=0;i<arAll.length;i++)	arAll[i] = RandomMyArray(arAll[i]);
+		
+		var imgAll = [];
+		ctklikBMax = 2+3;
+		ctklikSMax = 10;
+		for(var i=0;i<arAll.length;i++){
+			var arm = [2,3,10]; // ctklikB dan ctklikS //
+			//var folder = ["../dataimage/alami/","../dataimage/buatan/","../dataimage/bukanbtp/"];
+			var folder = ["../dataimage/alami200/","../dataimage/buatan200/","../dataimage/bukanbtp200/"];
+			for(var j=0;j<arm[i];j++){
+				var temp = arAll[i][j][0];
+				arAll[i][j][0] = folder[i]+""+temp;
+				imgAll.push(arAll[i][j]);
+			}
+		}
+		// random gambar setelah di isi;
+		imgAll = RandomMyArray(imgAll);
+		
+	</script>
+	<script>
+		// membuat banyak img
+		var divImg = [];
+		var ct = 0;
+		for(var i=0;i<3;i++){
+			for(var j=0;j<5;j++){
+				var myDiv = document.createElement('div');
+				var myImg = document.createElement('img');
+				var myDivTF = document.createElement('div');
+				var myImgTF = document.createElement('img');
+				
+				myDivTF.style.pointerEvents = "none";
+
+				myDiv.classList.add('divimg');
+				myDivTF.classList.add('divimg');
+				myDiv.id = "myDiv"+ct;
+				myDiv.img = myImg;
+				myImg.style.width = '140%';
+				myImg.style.height = '140%';
+				myImg.style.objectFit = "contain";
+				myImgTF.style.width = '100%';
+				myImgTF.style.height = '100%';
+				myImgTF.style.objectFit = "contain";
+				
+				myDivTF.style.opacity = '0';
+				
+				myImg.src = imgAll[ct][0];
+				
+				if(imgAll[ct][3]==3)	myImgTF.src = "../dataimage/silang.png";
+				else 					myImgTF.src = "../dataimage/centang.png";
+				myDiv.no = imgAll[ct][3];
+				myDiv.TF = myDivTF;
+				
+				divImg.push(myDiv);
+				myBG.appendChild(myDiv);
+				myBG.appendChild(myDivTF);
+				myDiv.appendChild(myImg);
+				myDivTF.appendChild(myImgTF);
+				
+				var erx = Math.ceil(Math.random()*80)-40;
+				
+				myDiv.style.left = (myMeja.x+140*j+erx)+'px';
+				myDiv.style.top = (myMeja.y+70*i)+'px';
+				myDivTF.style.left = (myMeja.x+140*j+erx)+'px';
+				myDivTF.style.top = (myMeja.y+70*i)+'px';
+				
+				ct++;
+			}
+		}
+		
+		
+		var ctklikB = 0;
+		var ctklikS = 0;
+		for(var i=0;i<divImg.length;i++){
+			divImg[i].addEventListener("click", handleClick)
+		}
+		function handleClick(e){
+			var ecT = e.currentTarget;
+			var no = ecT.no;
+			var img = ecT.img;
+			if(no==3){
+				ctklikS--;
+				console.log("salah");
+			}else{
+				ctklikB++;
+				console.log("benar");
+			}
+			ecT.TF.style.opacity = '1';
+			ecT.removeEventListener('click', handleClick);
+			ecT.style.cursor = "default";
+		}
+
+	</script>
+	<script>
+		
+		//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685+cX)+'px';
+		//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414+cY)+'px';
+		//myBtn.addEventListener("click", function() {
+			//location.href = "beranda.html";
+		//});
+		
+		window.addEventListener('resize', () => {
+			UbahWindow(0,0)
+		});
+		/*
+		window.addEventListener('scroll', () => {
+			const cX = window.scrollX || window.pageXOffset;
+			const cY = window.scrollY || window.pageYOffset;
+			UbahWindow(cX,cY)
+		});
+		*/
+		function UbahWindow(xc,yc){
+			for(var i=1;i<=4;i++){
+				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
+				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
+			}
+		}
+	</script>
+	
+	
+	<script>
+		//tombol tombol
+		btnBeranda.addEventListener("click", function(){
+			
+		})
+		btnMateri.addEventListener("click", function(){
+			
+		})
+		btnKembali.addEventListener("click", function(){
+			
+		})
+		btnLanjut.addEventListener("click", function(){
+			
+		})
+	</script>
+</body>
+</html>
