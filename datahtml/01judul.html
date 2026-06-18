@@ -79,11 +79,25 @@
 		myBG.w = myBG.getBoundingClientRect().width;
 		myBG.h = myBG.getBoundingClientRect().height;
 		
-		btnMulai.style.left = (myBG.x+730)+'px';
-		btnMulai.style.top = (myBG.y+422)+'px';
+		var scl = 1;
+		var xybtn = [730,422];
+		btnMulai.style.left = (myBG.x+xybtn[0]*scl)+'px';
+		btnMulai.style.top = (myBG.y+xybtn[1]*scl)+'px';
 		btnMulai.style.backgroundImage = "url(../dataimage/btnMulai.png)";
 		
 		document.body.style.backgroundColor = "black";
+	</script>
+	<script>
+		//window.addEventListener('resize', () => {
+			//ZoomAll();
+		//});
+		function UbahWindow(xc,yc){
+			//myBG.x = myBG.getBoundingClientRect().x;
+			//myBG.y = myBG.getBoundingClientRect().y;
+			btnMulai.style.left = (myBG.x+xybtn[0]*scl)+'px';
+			btnMulai.style.top = (myBG.y+xybtn[1]*scl)+'px';
+			//btnMulai.style.transform = 'translate(${myBG.x+xybtn[0]}px, ${myBG.y+xybtn[1]}px) scale(${scl})`;
+		}
 	</script>
 	<script>
 		function ZoomAll(){
@@ -91,12 +105,12 @@
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			fixscale = Math.min(xscale,yscale);
-			fixzoom = fixscale*100;
-			document.body.style.zoom = ""+fixzoom+"%";
-			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			scl = Math.min(xscale,yscale);
+			fixscl = scl*100;
+			document.body.style.zoom = ""+fixscl+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
+			UbahWindow(0,0);
 		}
-		
 		//ZoomAll();
 		//window.resizeTo(840, 472);
 	</script>
@@ -122,24 +136,6 @@
 		btnMulai.addEventListener("click", handleClick)
 		function handleClick(e){
 			location.href = "02beranda.html";
-		}
-	</script>
-	<script>
-		window.addEventListener('resize', () => {
-			UbahWindow(0,0)
-		});
-		/*
-		window.addEventListener('scroll', () => {
-			const cX = window.scrollX || window.pageXOffset;
-			const cY = window.scrollY || window.pageYOffset;
-			UbahWindow(cX,cY)
-		});
-		*/
-		function UbahWindow(xc,yc){
-			for(var i=1;i<=4;i++){
-				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
-				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
-			}
 		}
 	</script>
 	

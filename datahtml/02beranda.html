@@ -159,10 +159,10 @@
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			fixscale = Math.min(xscale,yscale);
-			fixzoom = fixscale*100;
-			document.body.style.zoom = ""+fixzoom+"%";
-			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			scl = Math.min(xscale,yscale);
+			fixscl = scl*100;
+			document.body.style.zoom = ""+fixscl+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
 		}
 		
 		//ZoomAll();
@@ -207,19 +207,29 @@
 	</script>
 	<script>
 		window.addEventListener('resize', () => {
-			UbahWindow(0,0)
+			ZoomAll();
+			UbahWindow(0,0);
 		});
-		/*
-		window.addEventListener('scroll', () => {
-			const cX = window.scrollX || window.pageXOffset;
-			const cY = window.scrollY || window.pageYOffset;
-			UbahWindow(cX,cY)
-		});
-		*/
 		function UbahWindow(xc,yc){
-			for(var i=1;i<=4;i++){
-				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
-				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
+			btnBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
+			btnBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+			btnMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
+			btnMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+			btnKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
+			btnKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+			btnLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
+			btnLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+			btngBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
+			btngBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+			btngMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
+			btngMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+			btngKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
+			btngKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+			btngLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
+			btngLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+			for(var i=1;i<=6;i++){
+				document.getElementById("btn"+i).style.left = (myBG.x+xyMenu[i-1][0]*scl)+'px';
+				document.getElementById("btn"+i).style.top = (myBG.y+xyMenu[i-1][1]*scl)+'px';
 			}
 		}
 	</script>
