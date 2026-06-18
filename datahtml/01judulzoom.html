@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waspada Bahan Tambahan Pangan</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="../dataimage/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../dataimage/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../dataimage/favicon_io/favicon-16x16.png">
+	<style>
+		.bg {
+			max-width: 840px; /* Lebar maksimal halaman */
+			margin: 0 auto;
+			width: 100%;
+			height: 472px;
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		}
+		.bgmeja {
+			margin: 0 auto;
+			width: 840px;
+			height: 472px;
+		}
+		.klikbtn {
+			position: absolute;
+			width: 100px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.divimg {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			background-color: none;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			justify-content: center;
+		}
+		.meja {
+			position: absolute;
+			width: 820px;
+			height: 280px;
+			background-color: none;
+			cursor: default;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btn {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+			/* Titik acuan zoom berada di tengah div */
+			transform-origin: center center; 
+		}
+	</style>
+</head>
+<body>
+	<div class ="bg" id="bg">
+		<div class="btn" id="btnMulai"></div>
+	</div>
+	<script>
+		// posisi awal dan image awal
+		const cX = window.scrollX;
+		const cY = window.scrollY;
+		const myBG = document.getElementById("bg");
+		const btnMulai = document.getElementById("btnMulai");
+		
+		
+		myBG.style.backgroundImage = "url(../dataimage/judul.png)";
+		myBG.x = myBG.getBoundingClientRect().x;
+		myBG.y = myBG.getBoundingClientRect().y;
+		myBG.w = myBG.getBoundingClientRect().width;
+		myBG.h = myBG.getBoundingClientRect().height;
+		
+		var scl = 1;
+		//var xybtn = [730,422];
+		var xybtn = [710,422];
+		btnMulai.style.left = (myBG.x+xybtn[0])+'px';
+		btnMulai.style.top = (myBG.y+xybtn[1])+'px';
+		btnMulai.style.backgroundImage = "url(../dataimage/btnMulai.png)";
+		
+		document.body.style.backgroundColor = "black";
+	</script>
+	<script>
+		window.addEventListener('resize', () => {
+			ZoomAll();
+		});
+		function UbahWindow(xc,yc){
+			myBG.x = myBG.getBoundingClientRect().x;
+			myBG.y = myBG.getBoundingClientRect().y;
+			console.log(myBG.x)
+			btnMulai.style.left = (myBG.x+xybtn[0])+'px';
+			btnMulai.style.top = (myBG.y+xybtn[1])+'px'; 
+		}
+	</script>
+	<script>
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			scl = 0.95*Math.min(xscale,yscale);
+			fixscl = scl*100;
+			document.body.style.zoom = ""+fixscl+"%";
+			myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
+			UbahWindow(0,0);
+		}
+		ZoomAll();
+		//window.resizeTo(840, 472);
+	</script>
+	<script>
+		//function acak array
+		function RandomMyArray(Arr){
+			for (var i=0; i<Arr.length; i++){
+				var r = Math.floor(Math.random() * Arr.length);
+				var a = Arr[i];
+				Arr[i] = Arr[r];
+				Arr[r] = a;
+			}
+			return Arr;
+		}
+		function arraysAreEqual(arr1, arr2) {
+			if (arr1.length !== arr2.length) {
+			   return false;
+			}
+			return arr1.every((val, index) => val === arr2[index]);
+		}
+	</script>
+	<script>
+		btnMulai.addEventListener("click", handleClick)
+		function handleClick(e){
+			location.href = "02beranda.html";
+		}
+	</script>
+	
+	
+	<script>
+	</script>
+</body>
+</html>
