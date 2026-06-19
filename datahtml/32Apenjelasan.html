@@ -14,11 +14,13 @@
 			width: 100%;
 			height: 472px;
 			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+			position: absolute;
 		}
 		.bgmeja {
 			margin: 0 auto;
 			width: 840px;
 			height: 472px;
+			position: absolute;
 		}
 		.klikbtn {
 			position: absolute;
@@ -98,10 +100,13 @@
 		const cY = window.scrollY;
 		const myBG = document.getElementById("bg");
 		myBG.style.backgroundImage = "url(../dataimage/materi00.png)";
-		myBG.x = myBG.getBoundingClientRect().x;
-		myBG.y = myBG.getBoundingClientRect().y;
-		myBG.w = myBG.getBoundingClientRect().width;
-		myBG.h = myBG.getBoundingClientRect().height;
+		let lebarJendela = window.innerWidth;
+		let tinggiJendela = window.innerHeight;
+		var scl = 1;
+		myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+		myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+		myBG.style.left = ''+(myBG.x)+'px';
+		myBG.style.top = ''+(myBG.y)+'px';
 		document.body.style.backgroundColor = "black";
 	
 		const btnBeranda = document.getElementById("btnBeranda");
@@ -114,59 +119,63 @@
 		const btngLanjut = document.getElementById("btngLanjut");
 		
 		var xyBtn = [[32,422],[145,422],[610,422],[730,422]];
-		btnBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
-		btnBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
+		btnBeranda.style.left = (xyBtn[0][0])+'px';
+		btnBeranda.style.top = (xyBtn[0][1])+'px';
 		btnBeranda.style.backgroundImage = "url(../dataimage/btnBeranda.png)";
-		btnMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
-		btnMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
+		btnMateri.style.left = (xyBtn[1][0])+'px';
+		btnMateri.style.top = (xyBtn[1][1])+'px';
 		btnMateri.style.backgroundImage = "url(../dataimage/btnMateri.png)";
-		btnKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
-		btnKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
+		btnKembali.style.left = (xyBtn[2][0])+'px';
+		btnKembali.style.top = (xyBtn[2][1])+'px';
 		btnKembali.style.backgroundImage = "url(../dataimage/btnKembali.png)";
-		btnLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
-		btnLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
+		btnLanjut.style.left = (xyBtn[3][0])+'px';
+		btnLanjut.style.top = (xyBtn[3][1])+'px';
 		btnLanjut.style.backgroundImage = "url(../dataimage/btnLanjut.png)";
-		btngBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
-		btngBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
+		btngBeranda.style.left = (xyBtn[0][0])+'px';
+		btngBeranda.style.top = (xyBtn[0][1])+'px';
 		btngBeranda.style.backgroundImage = "url(../dataimage/btngBeranda.png)";
-		btngMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
-		btngMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
+		btngMateri.style.left = (xyBtn[1][0])+'px';
+		btngMateri.style.top = (xyBtn[1][1])+'px';
 		btngMateri.style.backgroundImage = "url(../dataimage/btngMateri.png)";
-		btngKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
-		btngKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
+		btngKembali.style.left = (xyBtn[2][0])+'px';
+		btngKembali.style.top = (xyBtn[2][1])+'px';
 		btngKembali.style.backgroundImage = "url(../dataimage/btngKembali.png)";
-		btngLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
-		btngLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
+		btngLanjut.style.left = (xyBtn[3][0])+'px';
+		btngLanjut.style.top = (xyBtn[3][1])+'px';
 		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
 		
 	</script>
 	<script>
 		function UbahWindow(xc,yc){
-			myBG.x = myBG.getBoundingClientRect().x;
-			myBG.y = myBG.getBoundingClientRect().y;
-			btnBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
-			btnBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
-			btnMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
-			btnMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
-			btnKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
-			btnKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
-			btnLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
-			btnLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
-			btngBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
-			btngBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
-			btngMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
-			btngMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
-			btngKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
-			btngKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
-			btngLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
-			btngLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
+			lebarJendela = window.innerWidth;
+			tinggiJendela = window.innerHeight;
+			myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+			myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+			myBG.style.left = ''+(myBG.x)+'px';
+			myBG.style.top = ''+(myBG.y)+'px';
+			btnBeranda.style.left = (xyBtn[0][0])+'px';
+			btnBeranda.style.top = (xyBtn[0][1])+'px';
+			btnMateri.style.left = (xyBtn[1][0])+'px';
+			btnMateri.style.top = (xyBtn[1][1])+'px';
+			btnKembali.style.left = (xyBtn[2][0])+'px';
+			btnKembali.style.top = (xyBtn[2][1])+'px';
+			btnLanjut.style.left = (xyBtn[3][0])+'px';
+			btnLanjut.style.top = (xyBtn[3][1])+'px';
+			btngBeranda.style.left = (xyBtn[0][0])+'px';
+			btngBeranda.style.top = (xyBtn[0][1])+'px';
+			btngMateri.style.left = (xyBtn[1][0])+'px';
+			btngMateri.style.top = (xyBtn[1][1])+'px';
+			btngKembali.style.left = (xyBtn[2][0])+'px';
+			btngKembali.style.top = (xyBtn[2][1])+'px';
+			btngLanjut.style.left = (xyBtn[3][0])+'px';
+			btngLanjut.style.top = (xyBtn[3][1])+'px';
 		}
 		function ZoomAll(){
 			let lebarJendela = window.innerWidth;
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			var scl = 0.95*Math.min(xscale,yscale);
+			scl = 0.95*Math.min(xscale,yscale);
 			fixscl = scl*100;
 			document.body.style.zoom = ""+fixscl+"%";
 			//myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";

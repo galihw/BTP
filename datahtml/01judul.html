@@ -14,6 +14,7 @@
 			width: 100%;
 			height: 472px;
 			/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);*/
+			position: absolute
 		}
 		.bgmeja {
 			margin: 0 auto;
@@ -73,13 +74,14 @@
 		const cY = window.scrollY;
 		const myBG = document.getElementById("bg");
 		const btnMulai = document.getElementById("btnMulai");
-		
-		
+		let lebarJendela = window.innerWidth;
+		let tinggiJendela = window.innerHeight;
+		var scl = 1;
+		myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+		myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+		myBG.style.left = ''+(myBG.x)+'px';
+		myBG.style.top = ''+(myBG.y)+'px';
 		myBG.style.backgroundImage = "url(../dataimage/judul.png)";
-		myBG.x = myBG.getBoundingClientRect().x;
-		myBG.y = myBG.getBoundingClientRect().y;
-		myBG.w = myBG.getBoundingClientRect().width;
-		myBG.h = myBG.getBoundingClientRect().height;
 		
 		var xybtn = [710,422];
 		btnMulai.style.left = (myBG.x+xybtn[0])+'px';
@@ -89,14 +91,15 @@
 		document.body.style.backgroundColor = "black";
 	</script>
 	<script>
-		window.addEventListener('resize', () => {
-			ZoomAll();
-		});
 		function UbahWindow(xc,yc){
-			myBG.x = myBG.getBoundingClientRect().x;
-			myBG.y = myBG.getBoundingClientRect().y;
-			btnMulai.style.left = (myBG.x+xybtn[0])+'px';
-			btnMulai.style.top = (myBG.y+xybtn[1])+'px'; 
+			lebarJendela = window.innerWidth;
+			tinggiJendela = window.innerHeight;
+			myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+			myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+			myBG.style.left = ''+(myBG.x)+'px';
+			myBG.style.top = ''+(myBG.y)+'px';
+			btnMulai.style.left = (xybtn[0])+'px';
+			btnMulai.style.top = (xybtn[1])+'px'; 
 		}
 	</script>
 	<script>
@@ -105,7 +108,7 @@
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			var scl = 0.95*Math.min(xscale,yscale);
+			scl = 0.95*Math.min(xscale,yscale);
 			fixscl = scl*100;
 			document.body.style.zoom = ""+fixscl+"%";
 			//myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
@@ -141,6 +144,9 @@
 	
 	
 	<script>
+		window.addEventListener('resize', () => {
+			ZoomAll();
+		});
 	</script>
 </body>
 </html>
