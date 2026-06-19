@@ -310,21 +310,6 @@
 		
 	</script>
 	<script>
-		function ZoomAll(){
-			let lebarJendela = window.innerWidth;
-			let tinggiJendela = window.innerHeight;
-			var xscale = lebarJendela/840;
-			var yscale = tinggiJendela/472;
-			fixscale = Math.min(xscale,yscale);
-			fixzoom = fixscale*100;
-			document.body.style.zoom = ""+fixzoom+"%";
-			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
-		}
-		
-		//ZoomAll();
-		//window.resizeTo(840, 472);
-	</script>
-	<script>
 		//function acak array
 		function RandomMyArray(Arr){
 			for (var i=0; i<Arr.length; i++){
@@ -368,6 +353,7 @@
 		// membuat banyak img
 		var divImg = [];
 		var ct = 0;
+		var ARerx = [];
 		for(var i=0;i<3;i++){
 			for(var j=0;j<5;j++){
 				var myDiv = document.createElement('div');
@@ -404,7 +390,7 @@
 				myDivTF.appendChild(myImgTF);
 				
 				var erx = Math.ceil(Math.random()*80)-40;
-				
+				ARerx.push(erx);
 				myDiv.style.left = (myMeja.x+140*j+erx)+'px';
 				myDiv.style.top = (myMeja.y+70*i)+'px';
 				myDivTF.style.left = (myMeja.x+140*j+erx)+'px';
@@ -438,29 +424,73 @@
 
 	</script>
 	<script>
-		
-		//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685+cX)+'px';
-		//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414+cY)+'px';
-		//myBtn.addEventListener("click", function() {
-			//location.href = "beranda.html";
-		//});
-		
-		window.addEventListener('resize', () => {
-			UbahWindow(0,0)
-		});
-		/*
-		window.addEventListener('scroll', () => {
-			const cX = window.scrollX || window.pageXOffset;
-			const cY = window.scrollY || window.pageYOffset;
-			UbahWindow(cX,cY)
-		});
-		*/
 		function UbahWindow(xc,yc){
-			for(var i=1;i<=4;i++){
-				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
-				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
+			myBG.x = myBG.getBoundingClientRect().x;
+			myBG.y = myBG.getBoundingClientRect().y;
+			btnBeranda.style.left = (myBG.x+31)+'px';
+			btnBeranda.style.top = (myBG.y+422)+'px';
+			btnMateri.style.left = (myBG.x+145)+'px';
+			btnMateri.style.top = (myBG.y+422)+'px';
+			btnKembali.style.left = (myBG.x+610)+'px';
+			btnKembali.style.top = (myBG.y+422)+'px';
+			btnLanjut.style.left = (myBG.x+730)+'px';
+			btnLanjut.style.top = (myBG.y+422)+'px';
+			btngBeranda.style.left = (myBG.x+31)+'px';
+			btngBeranda.style.top = (myBG.y+422)+'px';
+			btngMateri.style.left = (myBG.x+145)+'px';
+			btngMateri.style.top = (myBG.y+422)+'px';
+			btngKembali.style.left = (myBG.x+610)+'px';
+			btngKembali.style.top = (myBG.y+422)+'px';
+			btngLanjut.style.left = (myBG.x+730)+'px';
+			btngLanjut.style.top = (myBG.y+422)+'px';
+				
+			myMeja.style.left = (myBG.x+60)+'px';
+			myMeja.style.top = (myBG.y+142)+'px';
+			myMeja.x = myMeja.getBoundingClientRect().x;
+			myMeja.y = myMeja.getBoundingClientRect().y;
+			var ct = 0;
+			for(var i=0;i<3;i++){
+				for(var j=0;j<5;j++){
+					var myDiv = document.getElementById("myDiv"+ct);;
+					myDiv.style.left = (myMeja.x+140*j+ARerx[ct])+'px';
+					myDiv.style.top = (myMeja.y+70*i)+'px';
+					myDiv.TF.style.left = (myMeja.x+140*j+ARerx[ct])+'px';
+					myDiv.TF.style.top = (myMeja.y+70*i)+'px';
+					
+					ct++;
+				}
 			}
+			
 		}
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			var scl = 0.95*Math.min(xscale,yscale);
+			fixzoom = scl*100;
+			document.body.style.zoom = ""+fixzoom+"%";
+			//myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			UbahWindow(0,0);
+		}
+		
+		ZoomAll();
+		//window.resizeTo(840, 472);
+		
+		function handleClick(event) {
+			console.log("handleClick");
+		}
+		myBG.addEventListener('click', handleClick);
+		setTimeout(() => {
+			console.log("handleClick")
+			ZoomAll();
+			myBG.removeEventListener('click', handleClick);
+		}, 50);
+	</script>
+	<script>
+		window.addEventListener('resize', () => {
+			ZoomAll();
+		});
 	</script>
 	
 	

@@ -104,6 +104,8 @@
 			touch-action: none;
 			user-select: none;
 			-webkit-user-select: none;
+			/*tambahan*/
+			text-align: center;
 		}
 	</style>
 </head>
@@ -121,7 +123,7 @@
 		
 		<div id="myDivSoal1">
 			<div id="kiri1" class="kotaksoal">
-				1. Untuk menghasilkan warna biru alami yang aman pada makanan, bahan apa yang harus kita gunakan?
+				1. Untuk menghasilkan <b>warna biru alami</b> yang aman pada makanan, bahan apa yang harus kita gunakan?
 			</div>
 			<div id="kanan1" class="kotaksoal">
 				<input type="radio" id="pil1A" name="soal1" value="A">
@@ -138,7 +140,7 @@
 		
 		<div id="myDivSoal2">
 			<div id="kiri2" class="kotaksoal">
-				2.Saat jam istirahat, Doni membeli sebuah es lilin di depan sekolah yang warnanya sangat merah menyala dan mencolok. Setelah meminumnya, tenggorokan Doni terasa sangat gatal dan pahit. Zat pewarna buatan ilegal yang kemungkinan besar terkandung dalam es lilin tersebut adalah... 
+				2.Saat jam istirahat, Doni membeli sebuah es lilin di depan sekolah. Warnanya sangat merah menyala dan mencolok. Setelah meminumnya, tenggorokan Doni terasa sangat gatal dan pahit. <br><b>Zat pewarna buatan ilegal</b> yang kemungkinan besar terkandung dalam es lilin tersebut adalah ... 
 			</div>
 			<div id="kanan2" class="kotaksoal">
 				<input type="radio" id="pil2A" name="soal2" value="A">
@@ -154,7 +156,7 @@
 		
 		<div id="myDivSoal3">
 			<div id="kiri3" class="kotaksoal">
-				3. Ibu ingin membuat manisan buah kedondong agar awet disimpan beberapa minggu tanpa menggunakan bahan pengawet kimia buatan pabrik. Bahan tambahan pangan alami apa saja yang bisa bertindak sebagai pengawet alami jika digunakan dalam konsentrasi tinggi?
+				3. Ibu ingin membuat manisan buah kedondong agar <b>awet disimpan</b> beberapa minggu tanpa menggunakan bahan pengawet kimia buatan pabrik. <br>Bahan tambahan pangan alami apa saja yang bisa bertindak sebagai <b>pengawet alami</b> jika digunakan dalam konsentrasi tinggi?
 			</div>
 			<div id="kanan3" class="kotaksoal">
 				<input type="checkbox" name="soal3" value="A">
@@ -170,7 +172,7 @@
 		
 		<div id="myDivSoal4">
 			<div id="kiri4" class="kotaksoal">
-				4. Siti sedang membantu ibunya membuat kue tradisional dadar gulung. Ibu meminta Siti untuk memetik daun suji dan daun pandan di halaman rumah, kemudian menumbuknya untuk diambil air perasannya. Berdasarkan fungsinya, air perasan daun suji dan pandan ini bertindak sebagai ... dan ...
+				4. Siti sedang membantu ibunya membuat kue tradisional dadar gulung. Ibu meminta Siti untuk memetik daun suji dan daun pandan di halaman rumah, kemudian menumbuknya untuk diambil air perasannya. Berdasarkan fungsinya, <b>air perasan daun suji dan pandan</b> ini bertindak sebagai ... dan ...
 			</div>
 			<div id="kanan4" class="kotaksoal">
 				<input type="checkbox" name="soal4" value="A">
@@ -186,7 +188,7 @@
 		
 		<div id="myDivSoal5">
 			<div id="kiri5" class="kotaksoal">
-				5. Diantara bahan-bahan tambahan pangan yang sering ditemukan di bawah ini, pilihlah bahan tambahan makanan buatan yang aman dikonsumsi dengan takaran sesuai ketentuan BPOM!
+				5. Diantara bahan-bahan tambahan pangan yang sering ditemukan di bawah ini, pilihlah <b>5 bahan tambahan makanan buatan</b> yang aman dikonsumsi dengan takaran sesuai ketentuan BPOM!
 			</div>
 			<div id="kanan5" class="kotaksoal">
 				<input type="checkbox" name="soal5" value="A">
@@ -397,11 +399,21 @@
 				for(var i=0;i<5;i++){
 					count+=arResult[i];
 				}
+				var ket = "";
+				if(count<3) 		ket = "Masih pemanasan, yuk coba baca materinya lagi!";
+				else if(count<4) 	ket = "Dasar-dasarnya udah dapet, tinggal dikit lagi nih!";
+				else if(count<5) 	ket = "Gak ragu lagi, pemahamanmu kamu udah di atas rata-rata.";
+				else  				ket = "Keren banget! Kamu beneran paham luar dalam.";
+				
+				
 				var ss="";
-				ss += "Hasil kuis seru :<br>";
-				ss += "Benar = "+count+"<br>";
-				ss += "Salah = "+(5-count)+"<br><br>";
-				ss += "Nilai = "+(count*100/5)+"<br>";
+				ss += '<span style="font-size: 20px;line-height: 0.5">Hasil kuis seru :'+'<br><br>';
+				//ss += "Benar = "+count+"<br>";
+				//ss += "Salah = "+(5-count)+"<br><br>";
+				ss += '<span style="font-size: 40px;line-height: 0.5">Nilai kamu : '+(count*100/5)+'<br><br>';
+				//ss += '<span style="font-size: 20px;line-height: 0.5;">Keterangan : '+"<br>";
+				ss += '<span style="font-size: 20px;line-height: 0.5;">'+"<br>";
+				ss += ""+ket+"";
 				document.getElementById("myNilai").innerHTML = ss;
 				btnKembali.style.display = "none";
 				btnLanjut.style.display = "none";//
@@ -448,78 +460,132 @@
 		const mcKanan5 = document.getElementById("kanan5");
 		const mcNilai = document.getElementById("myNilai");
 		
-		var scl = 1;
 		var xyBtn = [[32,422],[145,422],[610,422],[730,422]];
-		btnBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
-		btnBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+		btnBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
+		btnBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
 		btnBeranda.style.backgroundImage = "url(../dataimage/btnBeranda.png)";
-		btnMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
-		btnMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+		btnMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
+		btnMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
 		btnMateri.style.backgroundImage = "url(../dataimage/btnMateri.png)";
-		btnKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
-		btnKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+		btnKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
+		btnKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
 		btnKembali.style.backgroundImage = "url(../dataimage/btnKembali.png)";
-		btnLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
-		btnLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+		btnLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
+		btnLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
 		btnLanjut.style.backgroundImage = "url(../dataimage/btnLanjut.png)";
-		btngBeranda.style.left = (myBG.x+xyBtn[0][0]*scl)+'px';
-		btngBeranda.style.top = (myBG.y+xyBtn[0][1]*scl)+'px';
+		btngBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
+		btngBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
 		btngBeranda.style.backgroundImage = "url(../dataimage/btngBeranda.png)";
-		btngMateri.style.left = (myBG.x+xyBtn[1][0]*scl)+'px';
-		btngMateri.style.top = (myBG.y+xyBtn[1][1]*scl)+'px';
+		btngMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
+		btngMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
 		btngMateri.style.backgroundImage = "url(../dataimage/btngMateri.png)";
-		btngKembali.style.left = (myBG.x+xyBtn[2][0]*scl)+'px';
-		btngKembali.style.top = (myBG.y+xyBtn[2][1]*scl)+'px';
+		btngKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
+		btngKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
 		btngKembali.style.backgroundImage = "url(../dataimage/btngKembali.png)";
-		btngLanjut.style.left = (myBG.x+xyBtn[3][0]*scl)+'px';
-		btngLanjut.style.top = (myBG.y+xyBtn[3][1]*scl)+'px';
+		btngLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
+		btngLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
 		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
 		
 		
-		var xyBtnDiv = [[32,70],[435,70]];
+		var xyBtnDiv = [[32,70],[435,70],[235,70]];
 		
-		mcNilai.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcNilai.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
+		mcNilai.style.left = (myBG.x+xyBtnDiv[2][0])+'px';
+		mcNilai.style.top = (myBG.y+xyBtnDiv[2][1])+'px';
 		
-		mcKiri1.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcKiri1.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
-		mcKiri2.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcKiri2.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
-		mcKiri3.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcKiri3.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
-		mcKiri4.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcKiri4.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
-		mcKiri5.style.left = (myBG.x+xyBtnDiv[0][0]*scl)+'px';
-		mcKiri5.style.top = (myBG.y+xyBtnDiv[0][1]*scl)+'px';
-		mcKanan1.style.left = (myBG.x+xyBtnDiv[1][0]*scl)+'px';
-		mcKanan1.style.top = (myBG.y+xyBtnDiv[1][1]*scl)+'px';
-		mcKanan2.style.left = (myBG.x+xyBtnDiv[1][0]*scl)+'px';
-		mcKanan2.style.top = (myBG.y+xyBtnDiv[1][1]*scl)+'px';
-		mcKanan3.style.left = (myBG.x+xyBtnDiv[1][0]*scl)+'px';
-		mcKanan3.style.top = (myBG.y+xyBtnDiv[1][1]*scl)+'px';
-		mcKanan4.style.left = (myBG.x+xyBtnDiv[1][0]*scl)+'px';
-		mcKanan4.style.top = (myBG.y+xyBtnDiv[1][1]*scl)+'px';
-		mcKanan5.style.left = (myBG.x+xyBtnDiv[1][0]*scl)+'px';
-		mcKanan5.style.top = (myBG.y+xyBtnDiv[1][1]*scl)+'px';
-		
-	</script>
-	<script>
+		mcKiri1.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+		mcKiri1.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+		mcKiri2.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+		mcKiri2.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+		mcKiri3.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+		mcKiri3.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+		mcKiri4.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+		mcKiri4.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+		mcKiri5.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+		mcKiri5.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+		mcKanan1.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+		mcKanan1.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+		mcKanan2.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+		mcKanan2.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+		mcKanan3.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+		mcKanan3.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+		mcKanan4.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+		mcKanan4.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+		mcKanan5.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+		mcKanan5.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
 		
 	</script>
 	<script>
+		
+	</script>
+	<script>
+		function UbahWindow(xc,yc){
+			myBG.x = myBG.getBoundingClientRect().x;
+			myBG.y = myBG.getBoundingClientRect().y;
+			btnBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
+			btnBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
+			btnMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
+			btnMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
+			btnKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
+			btnKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
+			btnLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
+			btnLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
+			btngBeranda.style.left = (myBG.x+xyBtn[0][0])+'px';
+			btngBeranda.style.top = (myBG.y+xyBtn[0][1])+'px';
+			btngMateri.style.left = (myBG.x+xyBtn[1][0])+'px';
+			btngMateri.style.top = (myBG.y+xyBtn[1][1])+'px';
+			btngKembali.style.left = (myBG.x+xyBtn[2][0])+'px';
+			btngKembali.style.top = (myBG.y+xyBtn[2][1])+'px';
+			btngLanjut.style.left = (myBG.x+xyBtn[3][0])+'px';
+			btngLanjut.style.top = (myBG.y+xyBtn[3][1])+'px';
+			
+			mcNilai.style.left = (myBG.x+xyBtnDiv[2][0])+'px';
+			mcNilai.style.top = (myBG.y+xyBtnDiv[2][1])+'px';
+			
+			mcKiri1.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+			mcKiri1.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+			mcKiri2.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+			mcKiri2.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+			mcKiri3.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+			mcKiri3.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+			mcKiri4.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+			mcKiri4.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+			mcKiri5.style.left = (myBG.x+xyBtnDiv[0][0])+'px';
+			mcKiri5.style.top = (myBG.y+xyBtnDiv[0][1])+'px';
+			mcKanan1.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+			mcKanan1.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+			mcKanan2.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+			mcKanan2.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+			mcKanan3.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+			mcKanan3.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+			mcKanan4.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+			mcKanan4.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+			mcKanan5.style.left = (myBG.x+xyBtnDiv[1][0])+'px';
+			mcKanan5.style.top = (myBG.y+xyBtnDiv[1][1])+'px';
+		}
 		function ZoomAll(){
 			let lebarJendela = window.innerWidth;
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			fixscale = Math.min(xscale,yscale);
-			fixzoom = fixscale*100;
+			var scl = 0.95*Math.min(xscale,yscale);
+			fixzoom = scl*100;
 			document.body.style.zoom = ""+fixzoom+"%";
-			myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			//myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			UbahWindow(0,0);
 		}
 		
-		//ZoomAll();
+		ZoomAll();
 		//window.resizeTo(840, 472);
+		
+		function handleClick(event) {
+			console.log("handleClick");
+		}
+		myBG.addEventListener('click', handleClick);
+		setTimeout(() => {
+			console.log("handleClick")
+			ZoomAll();
+			myBG.removeEventListener('click', handleClick);
+		}, 50);
 	</script>
 	<script>
 		//function acak array
@@ -552,21 +618,8 @@
 	</script>
 	<script>
 		window.addEventListener('resize', () => {
-			UbahWindow(0,0)
+			ZoomAll();
 		});
-		/*
-		window.addEventListener('scroll', () => {
-			const cX = window.scrollX || window.pageXOffset;
-			const cY = window.scrollY || window.pageYOffset;
-			UbahWindow(cX,cY)
-		});
-		*/
-		function UbahWindow(xc,yc){
-			for(var i=1;i<=4;i++){
-				//myBtn.style.left = ''+(myBG.getBoundingClientRect().x+685 + xc)+'px';
-				//myBtn.style.top = ''+(myBG.getBoundingClientRect().y+414 + yc)+'px';
-			}
-		}
 	</script>
 	
 	

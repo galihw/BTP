@@ -13,7 +13,7 @@
 			margin: 0 auto;
 			width: 100%;
 			height: 472px;
-			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+			/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);*/
 		}
 		.bgmeja {
 			margin: 0 auto;
@@ -58,6 +58,8 @@
 			touch-action: none;
 			user-select: none;
 			-webkit-user-select: none;
+			/* Titik acuan zoom berada di tengah div */
+			transform-origin: center center; 
 		}
 	</style>
 </head>
@@ -79,24 +81,22 @@
 		myBG.w = myBG.getBoundingClientRect().width;
 		myBG.h = myBG.getBoundingClientRect().height;
 		
-		var scl = 1;
-		var xybtn = [730,422];
-		btnMulai.style.left = (myBG.x+xybtn[0]*scl)+'px';
-		btnMulai.style.top = (myBG.y+xybtn[1]*scl)+'px';
+		var xybtn = [710,422];
+		btnMulai.style.left = (myBG.x+xybtn[0])+'px';
+		btnMulai.style.top = (myBG.y+xybtn[1])+'px';
 		btnMulai.style.backgroundImage = "url(../dataimage/btnMulai.png)";
 		
 		document.body.style.backgroundColor = "black";
 	</script>
 	<script>
-		//window.addEventListener('resize', () => {
-			//ZoomAll();
-		//});
+		window.addEventListener('resize', () => {
+			ZoomAll();
+		});
 		function UbahWindow(xc,yc){
-			//myBG.x = myBG.getBoundingClientRect().x;
-			//myBG.y = myBG.getBoundingClientRect().y;
-			btnMulai.style.left = (myBG.x+xybtn[0]*scl)+'px';
-			btnMulai.style.top = (myBG.y+xybtn[1]*scl)+'px';
-			//btnMulai.style.transform = 'translate(${myBG.x+xybtn[0]}px, ${myBG.y+xybtn[1]}px) scale(${scl})`;
+			myBG.x = myBG.getBoundingClientRect().x;
+			myBG.y = myBG.getBoundingClientRect().y;
+			btnMulai.style.left = (myBG.x+xybtn[0])+'px';
+			btnMulai.style.top = (myBG.y+xybtn[1])+'px'; 
 		}
 	</script>
 	<script>
@@ -105,13 +105,13 @@
 			let tinggiJendela = window.innerHeight;
 			var xscale = lebarJendela/840;
 			var yscale = tinggiJendela/472;
-			scl = Math.min(xscale,yscale);
+			var scl = 0.95*Math.min(xscale,yscale);
 			fixscl = scl*100;
 			document.body.style.zoom = ""+fixscl+"%";
-			myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
+			//myBG.style.clipPath = "polygon(0 0, "+fixscl+"% 0, "+fixscl+"% "+fixscl+"%, 0 "+fixscl+"%)";
 			UbahWindow(0,0);
 		}
-		//ZoomAll();
+		ZoomAll();
 		//window.resizeTo(840, 472);
 	</script>
 	<script>
