@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waspada Bahan Tambahan Pangan</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="../dataimage/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../dataimage/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../dataimage/favicon_io/favicon-16x16.png">
+	<style>
+		.bg {
+			max-width: 840px; /* Lebar maksimal halaman */
+			margin: 0 auto;
+			width: 100%;
+			height: 472px;
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+			position: absolute;
+		}
+		.bgmeja {
+			margin: 0 auto;
+			width: 840px;
+			height: 472px;
+			position: absolute;
+		}
+		.klikbtn {
+			position: absolute;
+			width: 100px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.divimg {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			background-color: none;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			justify-content: center;
+		}
+		.meja {
+			position: absolute;
+			width: 820px;
+			height: 280px;
+			background-color: none;
+			cursor: default;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btn {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btngrey {
+			position: absolute;
+			width: 97px; 
+			height: 40px; 
+			background-color: none;
+			cursor: default;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+		.btnMenu {
+			position: absolute;
+			width: 130px; 
+			height: 150px; 
+			background-color: none;
+			cursor: pointer;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+        /* Container list di tengah dengan scroll */
+        .list-container {
+            position: absolute;
+            top: 100px; /* Di bawah header (header tinggi padding 15px + teks) */
+            bottom: 60px; /* Di atas tombol (tinggi footer) */
+            left: 0px;
+            width: 100%;
+            overflow-y: scroll; /* Scroll aktif */
+            /*background-color: #fff;*/
+        }
+
+        /* Styling untuk 100 list link */
+        .list-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-container li {
+            border-bottom: 1px solid #eee;
+			text-align: center;
+        }
+
+        .list-container a {
+            display: block;
+            padding: 12px 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .list-container a:hover {
+            background-color: #f0f0f0;
+            color: #004499;
+        }
+
+	</style>
+</head>
+<body>
+	<div class ="bg" id="bg">
+		<div class="btngrey" id="btngBeranda"></div>
+		<div class="btngrey" id="btngMateri"></div>
+		<div class="btngrey" id="btngKembali"></div>
+		<div class="btngrey" id="btngLanjut"></div>
+		<div class="btn" id="btnBeranda"></div>
+		<div class="btn" id="btnMateri"></div>
+		<div class="btn" id="btnKembali"></div>
+		<div class="btn" id="btnLanjut"></div>
+        <div class="list-container">
+            <ul id="daftar-link">
+                <!-- List akan digenerate otomatis oleh JavaScript (100 item) -->
+            </ul>
+        </div>
+	</div>
+	<script>
+		// posisi awal dan image awal
+		const cX = window.scrollX;
+		const cY = window.scrollY;
+		const myBG = document.getElementById("bg");
+		myBG.style.backgroundImage = "url(../dataimage/aset.png)";
+		let lebarJendela = window.innerWidth;
+		let tinggiJendela = window.innerHeight;
+		var scl = 1;
+		myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+		myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+		myBG.style.left = ''+(myBG.x)+'px';
+		myBG.style.top = ''+(myBG.y)+'px';
+		document.body.style.backgroundColor = "black";
+	
+		const btnBeranda = document.getElementById("btnBeranda");
+		const btnMateri = document.getElementById("btnMateri");
+		const btnKembali = document.getElementById("btnKembali");
+		const btnLanjut = document.getElementById("btnLanjut");
+		const btngBeranda = document.getElementById("btngBeranda");
+		const btngMateri = document.getElementById("btngMateri");
+		const btngKembali = document.getElementById("btngKembali");
+		const btngLanjut = document.getElementById("btngLanjut");
+		
+		var xyBtn = [[32,422],[145,422],[610,422],[730,422]];
+		btnBeranda.style.left = (xyBtn[0][0])+'px';
+		btnBeranda.style.top = (xyBtn[0][1])+'px';
+		btnBeranda.style.backgroundImage = "url(../dataimage/btnBeranda.png)";
+		btnMateri.style.left = (xyBtn[1][0])+'px';
+		btnMateri.style.top = (xyBtn[1][1])+'px';
+		btnMateri.style.backgroundImage = "url(../dataimage/btnMateri.png)";
+		btnKembali.style.left = (xyBtn[2][0])+'px';
+		btnKembali.style.top = (xyBtn[2][1])+'px';
+		btnKembali.style.backgroundImage = "url(../dataimage/btnKembali.png)";
+		btnLanjut.style.left = (xyBtn[3][0])+'px';
+		btnLanjut.style.top = (xyBtn[3][1])+'px';
+		btnLanjut.style.backgroundImage = "url(../dataimage/btnLanjut.png)";
+		btngBeranda.style.left = (xyBtn[0][0])+'px';
+		btngBeranda.style.top = (xyBtn[0][1])+'px';
+		btngBeranda.style.backgroundImage = "url(../dataimage/btngBeranda.png)";
+		btngMateri.style.left = (xyBtn[1][0])+'px';
+		btngMateri.style.top = (xyBtn[1][1])+'px';
+		btngMateri.style.backgroundImage = "url(../dataimage/btngMateri.png)";
+		btngKembali.style.left = (xyBtn[2][0])+'px';
+		btngKembali.style.top = (xyBtn[2][1])+'px';
+		btngKembali.style.backgroundImage = "url(../dataimage/btngKembali.png)";
+		btngLanjut.style.left = (xyBtn[3][0])+'px';
+		btngLanjut.style.top = (xyBtn[3][1])+'px';
+		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
+		
+		
+		var arAset = [
+	["Daun suji","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjLHTPAq4ZTNU5hm6HGJrCqHQQeNs5sFAnrg&s"],
+	["daun pandan","https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/11/15052656/manfaat-daun-pandan-dan-efek-sampingnya-bagi-tubuh-halodoc.jpg.webp"],
+	["Kunyit","https://desagrogol.gunungkidulkab.go.id/assets/files/artikel/sedang_1724401291KUNYIT.jpg"],
+	["Buah bit","https://blog.amikom.ac.id/wp-content/uploads/2025/10/Manfaat-Buah-Bit-Si-Umbi-Merah-yang-Kaya-Gizi-dan-Energi-Alami1.jpg"],
+	["wortel","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9iTMn07mYqOgvEkx--JMSUc5DB_Fg2MxydA&s"],
+	["ekstrak cabai","https://png.pngtree.com/png-vector/20240929/ourmid/pngtree-red-chili-png-image_13982911.png"],
+	["Ekstrak buah naga merah","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE4ICSrpTKZhjeph0sIganY_d-Dn37jlw2vQ&s"],
+	["ubi ungu","https://order.lottemart.co.id/_next/image?url=https%3A%2F%2Fcoreimages.lottemart.co.id%2Ford%2F06%2F0030535000&w=1920&q=75"],
+	["Garam dapur","https://ayoomall-tokodaring.oss-ap-southeast-5.aliyuncs.com/com.airmas.nest_ayoomall/development//products/suHGLiB7KJfHZn6djwD1JO9TkmXxTjZ7pWZY7AHS.jpg"],
+	["gula","https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/5647873.jpg?fit=800%2C800&ssl=1"],
+	["bawang putih","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiANnbx4WOrfu8wZpZGVctfEMENfvSQYMaiA&s"],
+	["bawang merah","https://svc-silinda.jabarprov.go.id/assets/public/image/commodities/4512072c-b8ef-4774-bba4-4191af647cbf.png"],
+	["bawang putih","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiANnbx4WOrfu8wZpZGVctfEMENfvSQYMaiA&s"],
+	["garam","https://ayoomall-tokodaring.oss-ap-southeast-5.aliyuncs.com/com.airmas.nest_ayoomall/development//products/suHGLiB7KJfHZn6djwD1JO9TkmXxTjZ7pWZY7AHS.jpg"],
+	["merica","https://cdn.ralali.id/assets/img/Libraries/100000172904001_PRIMA_Merica_Bubuk_100_gr-6a9a4be3008a77882d9c7d96793d27ad-1.png"],
+	["pala","https://image.dailymartazzahra.com/s3/productimages/webp/co37129/p1284665/w600-h600/9d5ce909-d739-4255-b0d5-03d7a6566dc4.png"],
+	["ketumbar","https://static.wixstatic.com/media/44847a_7d3d39c68c43441bbdbb4ffa6b33d9c0~mv2.png/v1/fill/w_640,h_636,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/44847a_7d3d39c68c43441bbdbb4ffa6b33d9c0~mv2.png"],
+	["Gula aren","https://mitraren.com/wp-content/uploads/2023/08/Untitled-design-2.png"],
+	["madu","https://unair.ac.id/wp-content/uploads/2021/10/madu-.jpg"],
+	["stevia (ekstrak daun Stevia)","https://img-cdn.medkomtek.com/IZdsvmrM_s8To-5znE9zBxR1L6k=/0x0/smart/filters:quality(100):format(webp)/article/2KNTgMfZyuTX6SbMwuZca/original/047498600_1540577317-Manfaat-Daun-Stevia-untuk-Kesehatan-Tubuh-Anda-By-Scisetti-Alfio-Shutterstock.jpg"],
+	["Ekstrak kacang vanila","https://s.alicdn.com/@sc04/kf/Afe769030682b47de899e95aa58bfb6791/Hot-Sale-18-21-cm-Natural-Vanilla-Bourbon-Red-Vanilla-Dried-Vanilla-Beans-Black-TK-Madagascar-1kg-Traditional-Preparation-for.jpeg_300x300.jpg"],
+	["daun jeruk","https://static.cdntap.com/tap-assets-prod/wp-content/uploads/sites/24/2021/04/daun-jeruk.jpg"],
+	["batang serai","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5wcShFKugTzQyL9LhLjvX8ZiaeDnVNFG33g&s"],
+	["Agar-agar (dari rumput laut)","https://cairofood.id/wp-content/uploads/12-jenis-rumput-laut-yang-harus-kamu-coba-sea-lettuce.jpg"],
+	["kulit buah apel","https://portal.riau24.com/news/20211219/riau24_1639924964.jpg"],
+	["kulit jeruk","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1_LjF_W_9ssruSD0DJBEWf5rL5rjR8FCng&s"],
+	["kacang kedelai","https://assets.unileversolutions.com/v1/139916241.jpg"],
+	["kuning telur","https://cdn1-production-images-kly.akamaized.net/6T-dprM4FVujG-tZ15WnrrFD3lc=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/762076/original/007242400_1415268727-kuning-telur130405c.jpg"],
+	["roti tawar","https://www.sarirotifoodsolutions.com/uploads/product/toast_bread_product.jpg"],
+	["roti manis","https://richcreme.com/wp-content/uploads/2026/05/bread-roll-with-cream.webp"],
+	["donat","https://www.pastisania.com/storage/app/media/posts/87.webp"],
+	["pizza","https://png.pngtree.com/png-vector/20241211/ourmid/pngtree-authentic-italian-pizza-with-cheese-and-fresh-vegetable-toppings-png-image_14714611.png"],
+	["makaroni skotel","https://cdn.antaranews.com/cache/1200x800/2022/04/30/menu.png"],
+	["zupazup","https://asset.kompas.com/crops/_sDDwAPhnr-Tbik0VhgtMCZ1gwQ=/0x0:756x504/1200x800/data/photo/2021/11/18/6195966d2d42e.jpg"],
+	["roti sisir","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPg087VAQOSWm8Jjs8uRoV1c7z058xG1Vetg&s"],
+	["susu","https://rumahsusuindonesia.com/wp-content/uploads/2025/08/foto-kemasan-susu.webp"],
+	["sus2","https://static.vecteezy.com/system/resources/thumbnails/066/396/366/small/refreshing-glass-of-milk-isolated-on-transparent-background-a-wholesome-drink-png.png"],
+	["teh","https://png.pngtree.com/png-vector/20231015/ourmid/pngtree-brown-tea-cup-png-image_10163180.png"],
+	["teh2","https://d3bbrrd0qs69m4.cloudfront.net/images/product/large/apotek_online_k24klik_20220119091924359225_ULTRAJAYA-TEH-KOTAK-MELATI-500ML-removebg-preview.png"],
+	["kopi","https://www.nescafe.com/mena/sites/default/files/2024-11/SBU_NES_GEN_Gold-Latte%20Mugs%20without%20Logo-2_IMG_738by800px_241007_1_1728451397798.png"],
+	["kopi2","https://d3bbrrd0qs69m4.cloudfront.net/images/product/apotek_online_k24klik_20220207111121359225_KOPIKO-78C-MOCHARETTA-240ML-BTL-removebg-preview.png"],
+	["jus buah","https://www.waroengss.com/filemanager/image/products/550/1549695835_5c5e7b5ba0828.png"],
+	["jus buah2","https://s3.belanjapasti.com/media/image/buavita-juice-slim-82314-jambu-tpk-245ml-45505.png"],
+	["sirup","https://tropicanaslim.com/uploader/product/packshot-w-1768401998.png"],
+	["coca cola","https://s3.belanjapasti.com/media/image/coca-cola-soft-drink-pet-390ml-502306.png"],
+	["ice cream","https://assets.unileversolutions.com/v1/129485420.png"],
+	["es cendol","https://png.pngtree.com/png-vector/20250227/ourmid/pngtree-illustration-of-cendol-dawet-indonesian-drink-png-image_15581475.png"],
+	["es campur","https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8P8SHoTlg9qtDQ5rhSEX-fU3qGdy9xm0NJhVkskqo9NOyXJlmDTIbsWGc8kmQxy9Qxyw-EBQidUJpIOIJBOcjSE1ozGrMZUcpDIhvpeWzoR1KujKwHR1PU6eKqHv3vu4douA9M6NwDmYlmslL31cAZ6tadFj3SRoPRovhs5A1LS-lnalX3KB6J3tr/s500/gambar%20es%20buah%20cup%20png%20transparan%20keren.png"],
+	["es teler","https://esteler77.com/assets/images/about/l0-about1.png"],
+	["jagung","https://www.fondation-louisbonduelle.org/wp-content/uploads/2016/10/mais_193858076.png"],
+	["kacang panjang","https://png.pngtree.com/png-vector/20230924/ourmid/pngtree-long-beans-white-background-png-image_10109273.png"],
+	["buncis","https://marketplace.canva.com/1jqaI/MAG9_B1jqaI/1/tl/canva-fresh-green-beans-piled-together-MAG9_B1jqaI.png"],
+	["kacang tanah","https://i0.wp.com/resepkoki.id/wp-content/uploads/2017/02/Kacang-tanah.png?fit=685%2C490&ssl=1"],
+	["labu sayur/ labu siam","https://png.pngtree.com/png-vector/20250513/ourmid/pngtree-fresh-green-chayote-for-food-illustrations-png-image_16252257.png"],
+	["sayur sop","https://png.pngtree.com/png-vector/20240807/ourmid/pngtree-bowl-of-chicken-soup-with-vegetables-png-image_13404962.png"],
+	["semangka","https://png.pngtree.com/png-vector/20250212/ourmid/pngtree-watermelon-fruit-png-image_15450334.png"],
+	["durian","https://product.hstatic.net/200000551437/product/monthong_durian___33bdd9b20fa54728ab08711e11521063.png"],
+	["mangga","https://png.pngtree.com/png-vector/20250429/ourmid/pngtree-raw-mango-bunch-green-png-image_16142242.png"],
+	["rambutan","https://png.pngtree.com/png-vector/20240804/ourmid/pngtree-rambutan-fruit-isolated-on-white-background-png-image_13368353.png"],
+	["pisang","https://cdn.antaranews.com/cache/1200x800/2016/11/20161129banana-1504956_640.png"],
+	["daging sapi","https://png.pngtree.com/png-vector/20250429/ourmid/pngtree-fresh-raw-beef-cuts-with-deep-red-flesh-and-visible-marbling-png-image_16135856.png"],
+	["daging ayam","https://svc-silinda.jabarprov.go.id/assets/public/image/commodities/41236cde-165f-4a45-be5f-736715b5f1fa.png"],
+	["daging ikan salmon","https://www.fishbox.id/wp-content/uploads/2021/05/hgt-salmon.png"],
+	["peralatan masak","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQLTLLZR9euvs9XE3omvbc6dapFunrfxQhRQ&s"],
+	["meja","https://static.vecteezy.com/system/resources/thumbnails/069/163/890/small/clean-and-soft-wooden-table-artwork-in-flat-color-style-centered-on-a-white-background-vector.jpg"],
+	["topi masak","https://media.istockphoto.com/id/1388866526/id/vektor/set-gambar-topi-koki-vektor.jpg?s=612x612&w=is&k=20&c=w7cXUV6jcfdA9uHr4jHFdrbTOzatGh_kD5Y5Y1oOYdQ="],
+	["dapur","https://img.magnific.com/free-vector/cartoon-kitchen-interior-illustration_52683-65784.jpg?semt=ais_hybrid&w=740&q=80"],
+	["palet warna","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI3M7fYmJz0kvAt6g9m1KvLFdiEH0RLyeUGA&s"],
+	["icon","https://favicon.io/"]
+	]
+		
+        const listContainer = document.getElementById('daftar-link');
+        let listHTML = '';
+
+        for (let i = 1; i <= 69; i++) {
+			
+            //listHTML += `<li><a href="#">Link Halaman ${i}</a></li>`;
+			listHTML += `<li><a href="${arAset[i-1][1]}">${arAset[i-1][0]}</a></li>`;
+            //listHTML += '<li><a href='+arAset[i-1][1]+'>'+arAset[i-1][0]+'</a></li>';
+        }
+
+        listContainer.innerHTML = listHTML;
+	</script>
+	<script>
+		function UbahWindow(xc,yc){
+			lebarJendela = window.innerWidth;
+			tinggiJendela = window.innerHeight;
+			myBG.x = window.scrollX+(lebarJendela-840*scl)/2;
+			myBG.y = window.scrollY+(tinggiJendela-472*scl)/2;
+			myBG.style.left = ''+(myBG.x)+'px';
+			myBG.style.top = ''+(myBG.y)+'px';
+			btnBeranda.style.left = (xyBtn[0][0])+'px';
+			btnBeranda.style.top = (xyBtn[0][1])+'px';
+			btnMateri.style.left = (xyBtn[1][0])+'px';
+			btnMateri.style.top = (xyBtn[1][1])+'px';
+			btnKembali.style.left = (xyBtn[2][0])+'px';
+			btnKembali.style.top = (xyBtn[2][1])+'px';
+			btnLanjut.style.left = (xyBtn[3][0])+'px';
+			btnLanjut.style.top = (xyBtn[3][1])+'px';
+			btngBeranda.style.left = (xyBtn[0][0])+'px';
+			btngBeranda.style.top = (xyBtn[0][1])+'px';
+			btngMateri.style.left = (xyBtn[1][0])+'px';
+			btngMateri.style.top = (xyBtn[1][1])+'px';
+			btngKembali.style.left = (xyBtn[2][0])+'px';
+			btngKembali.style.top = (xyBtn[2][1])+'px';
+			btngLanjut.style.left = (xyBtn[3][0])+'px';
+			btngLanjut.style.top = (xyBtn[3][1])+'px';
+		}
+		function ZoomAll(){
+			let lebarJendela = window.innerWidth;
+			let tinggiJendela = window.innerHeight;
+			var xscale = lebarJendela/840;
+			var yscale = tinggiJendela/472;
+			scl = 0.95*Math.min(xscale,yscale);
+			fixzoom = scl*100;
+			document.body.style.zoom = ""+fixzoom+"%";
+			//myBG.style.clipPath = "polygon(0 0, "+fixzoom+"% 0, "+fixzoom+"% "+fixzoom+"%, 0 "+fixzoom+"%)";
+			UbahWindow(0,0)
+		}
+		
+		ZoomAll();
+		//window.resizeTo(840, 472);
+	</script>
+	<script>
+		//function acak array
+		function RandomMyArray(Arr){
+			for (var i=0; i<Arr.length; i++){
+				var r = Math.floor(Math.random() * Arr.length);
+				var a = Arr[i];
+				Arr[i] = Arr[r];
+				Arr[r] = a;
+			}
+			return Arr;
+		}
+		function arraysAreEqual(arr1, arr2) {
+			if (arr1.length !== arr2.length) {
+			   return false;
+			}
+			return arr1.every((val, index) => val === arr2[index]);
+		}
+	</script>
+	<script>
+		btnBeranda.addEventListener("click", function(){	location.href = "02beranda.html";})
+		btnMateri.addEventListener("click", function(){	location.href = "21materi.html";})
+		btnKembali.addEventListener("click", function(){	location.href = "21materi.html";})
+		btnLanjut.addEventListener("click", function(){	location.href = "21materi.html";})
+		
+		btnBeranda.style.display = "";//none
+		btnMateri.style.display = "none";
+		btnKembali.style.display = "none";
+		btnLanjut.style.display = "none";
+	</script>
+	<script>
+		window.addEventListener('resize', () => {
+			ZoomAll();
+		});
+	</script>
+	
+	
+	<script>
+	</script>
+</body>
+</html>
