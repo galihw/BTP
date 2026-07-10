@@ -72,9 +72,10 @@
 		}
 		.btnMenu {
 			position: absolute;
-			width: 130px; 
-			height: 150px; 
+			width: 200px; 
+			height: 70px; 
 			background-color: none;
+			opacity: 0.5;
 			cursor: pointer;
 			touch-action: none;
 			user-select: none;
@@ -150,7 +151,7 @@
 		btngLanjut.style.top = (xyBtn[3][1])+'px';
 		btngLanjut.style.backgroundImage = "url(../dataimage/btngLanjut.png)";
 		
-		var xyMenu = [[82.29,105.58],[211.82,211.82],[300.46,105.58],[409.54,211.82],[518.62,105.58],[627.7,211.82]];
+		var xyMenu = [[48,135],[157,275],[266,135],[375,275],[484,135],[593,275]];
 		for(var i=1;i<=6;i++){
 			document.getElementById("btn"+i).style.left = (xyMenu[i-1][0])+'px';
 			document.getElementById("btn"+i).style.top = (xyMenu[i-1][1])+'px';
@@ -235,6 +236,10 @@
 		btnMateri.style.display = "none";
 		btnKembali.style.display = "none";
 		btnLanjut.style.display = "none";
+		btngBeranda.style.display = "none";
+		btngMateri.style.display = "none";
+		btngKembali.style.display = "none";
+		btngLanjut.style.display = "none";
 		
 	</script>
 	<script>
