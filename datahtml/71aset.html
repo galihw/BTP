@@ -89,7 +89,12 @@
             left: 0px;
             width: 100%;
             overflow-y: scroll; /* Scroll aktif */
+			scrollbar-width: auto; 
             /*background-color: #fff;*/
+			/*font-family: 'Arial Rounded MT Bold', sans-serif;*/
+			font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+			font-weight: bold;
+			font-size:  14px;
         }
 
         /* Styling untuk 100 list link */
@@ -255,13 +260,14 @@
 	["dapur","https://img.magnific.com/free-vector/cartoon-kitchen-interior-illustration_52683-65784.jpg?semt=ais_hybrid&w=740&q=80"],
 	["palet warna","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI3M7fYmJz0kvAt6g9m1KvLFdiEH0RLyeUGA&s"],
 	["icon","https://favicon.io/"],
-	["buku teks","https://repositori.kemendikdasmen.go.id/10565/1/PENGETAHUAN%20BAHAN%20MAKANAN%201.pdf"]
+	["buku teks","https://repositori.kemendikdasmen.go.id/10565/1/PENGETAHUAN%20BAHAN%20MAKANAN%201.pdf"],
+	["AI gemini","https://gemini.google.com/app"]
 	]
 		
         const listContainer = document.getElementById('daftar-link');
         let listHTML = '';
 
-        for (let i = 1; i <= 70; i++) {
+        for (let i = 1; i <= 71; i++) {
 			
             //listHTML += `<li><a href="#">Link Halaman ${i}</a></li>`;
 			listHTML += `<li><a href="${arAset[i-1][1]}">${arAset[i-1][0]}</a></li>`;
